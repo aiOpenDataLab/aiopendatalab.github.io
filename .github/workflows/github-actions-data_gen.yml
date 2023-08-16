@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: output test data
-          path: output/test-stock.csv
+          path: output/test_finance.csv
 
   goodbye:
     runs-on: ubuntu-latest
