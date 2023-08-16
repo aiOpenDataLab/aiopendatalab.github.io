@@ -5,8 +5,11 @@ jobs:
   generate_data:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content
+        
       - name: Setup python
-        uses: actions/checkout@v4
+        uses: actions/setup-python@v4
         with:
           python-version: '3.11.4'  # install the python version needed
 
