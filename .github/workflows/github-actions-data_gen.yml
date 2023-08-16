@@ -28,8 +28,11 @@ jobs:
       - name: Archive test data
         uses: actions/upload-artifact@v3
         with:
-          name: output test data
-          path: output/test_finance.csv
+          name: Download Output files
+          path: output/
+          env-url: FOOBAR
+      - name: Download URL
+        run: echo "${{ env.FOOBAR }}"
 
   goodbye:
     runs-on: ubuntu-latest
