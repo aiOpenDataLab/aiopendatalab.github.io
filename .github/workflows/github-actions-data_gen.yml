@@ -30,9 +30,9 @@ jobs:
         with:
           name: Download Output files
           path: output/
-          env-url: FOOBAR
+          #env-url: FOOBAR
       - name: Download URL
-        run: echo "${{ env.FOOBAR }}"
+        run: echo "${{ env.archive_download_url }}"
 
   goodbye:
     runs-on: ubuntu-latest
