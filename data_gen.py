@@ -30,7 +30,7 @@ def get_stocks(options):
     #tickers = yf.Tickers('msft aapl googl')
     data = yf.download('msft aapl googl', period='1wk')
     print(f'data={data}')
-    f = open('test.csv','w')
+    f = open('output/test_finance.csv','w')
     data.to_csv(f)
     f.close()
     

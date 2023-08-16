@@ -25,6 +25,12 @@ jobs:
         continue-on-error: false
         run: python data_gen.py -c stock -o json
 
+      - name: Archive test data
+        uses: actions/upload-artifact@v3
+        with:
+          name: output test data
+          path: output/test-stock.csv
+
   goodbye:
     runs-on: ubuntu-latest
     steps:
