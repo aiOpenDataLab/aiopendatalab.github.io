@@ -8,14 +8,14 @@ jobs:
       - name: Checkout Repository
         continue-on-error: false
         uses: actions/checkout@v2 # checkout the repository content
-      - run: echo "Checkout repository ${{ job.status }}."
+      - run: echo Checkout repository ${{ job.status }}.
         
       - name: Setup Python
         uses: actions/setup-python@v4
         continue-on-error: false
         with:
           python-version: '3.11.4'  # install the python version needed
-      - run: echo "Setup python ${{ job.status }}."
+      - run: echo Setup python ${{ job.status }}.
 
       - name: Install Python Packages
         continue-on-error: false
