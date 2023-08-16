@@ -30,9 +30,11 @@ jobs:
         with:
           name: my-artifact
           path: output/
-          env-url: FOOBAR
+          target: my-art
+          #env-url: FOOBAR
+          run: echo "${{ target }}"
       - name: Upload URL
-        run: echo "${{ env.FOOBAR }}"
+        run: echo "${{ target }}"
 
       - uses: actions/download-artifact@v3
         id: download
