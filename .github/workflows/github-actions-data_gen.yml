@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Checkout Repository
         continue-on-error: false
-        uses: actions/checkout@v2 # checkout the repository content
+        uses: actions/checkout@v3 # checkout the repository content
         
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -28,11 +28,20 @@ jobs:
       - name: Archive test data
         uses: actions/upload-artifact@v3
         with:
-          name: Download Output files
+          name: Upload Output files
           path: output/
           #env-url: FOOBAR
-      - name: Download URL
+      - name: Upload URL
         run: echo "${{ env.archive_download_url }}"
+
+      - uses: actions/download-artifact@v3
+        id: download
+        with:
+          name: 'my-artifact'
+          path: output
+      
+      - name: 'Echo download path'
+        run: echo ${{steps.download.outputs.download-path}}
 
   goodbye:
     runs-on: ubuntu-latest
