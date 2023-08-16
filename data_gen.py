@@ -13,7 +13,7 @@ def usage():
 
 def get_stocks(options):
     import yfinance as yf
-    #from pandas_datareader import data as pdr
+    from pandas_datareader import data as pdr
     print (f"options={options}")
     print(f'Category={options.category}')
     print(f'Output={options.output}')
