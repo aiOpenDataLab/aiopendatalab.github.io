@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2 # checkout the repository content
-      - run: echo "Checkout repository ${{ job.status }}. ✅ 
+      - run: echo "Checkout repository ${{ if success() job.status }}. ✅"
         
       - name: Setup Python
         uses: actions/setup-python@v4
