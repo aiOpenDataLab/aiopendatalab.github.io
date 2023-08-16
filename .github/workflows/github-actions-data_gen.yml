@@ -5,23 +5,23 @@ jobs:
   generate_data:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository ${{ job.status }}
+      - name: Checkout Repository
         continue-on-error: false
         uses: actions/checkout@v2 # checkout the repository content
         
-      - name: Setup Python ${{ job.status }}
+      - name: Setup Python
         uses: actions/setup-python@v4
         continue-on-error: false
         with:
           python-version: '3.11.4'  # install the python version needed
 
-      - name: Install Python Packages ${{ job.status }}
+      - name: Install Python Packages
         continue-on-error: false
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           
-      - name: Generate Data ${{ job.status }}
+      - name: Generate Data
         continue-on-error: false
         run: python data_gen.py -c stock -o json
 
@@ -29,6 +29,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Goodbye World
+      - name: Goodbye World 👋
         run: echo "Goodbye world! 👋"
         shell: bash
