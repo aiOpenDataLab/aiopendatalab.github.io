@@ -41,7 +41,8 @@ jobs:
       - name: 'Echo download path'
         run: | 
           echo ${{steps.download.outputs.download-path}}
-          echo ${{steps.download.outputs}}
+          echo ${{github.run_id}} ${{github.repository}}
+          
 
   goodbye:
     runs-on: ubuntu-latest
