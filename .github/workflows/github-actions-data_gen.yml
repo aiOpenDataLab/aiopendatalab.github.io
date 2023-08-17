@@ -31,11 +31,7 @@ jobs:
           name: my-artifact
           path: output/
           target: my-art
-          #env-url: FOOBAR
-          run: echo "${{ target }}"
-      - name: Upload URL
-        run: echo "${{ target }}"
-
+  
       - uses: actions/download-artifact@v3
         id: download
         with:
@@ -43,7 +39,9 @@ jobs:
           path: output/
       
       - name: 'Echo download path'
-        run: echo ${{steps.download.outputs.download-path}}
+        run: | 
+          echo ${{steps.download.outputs.download-path}}
+          echo ${{steps.download.outputs}}
 
   goodbye:
     runs-on: ubuntu-latest
