@@ -38,10 +38,10 @@ jobs:
           name: my-artifact
           path: output/
       
-      - name: 'Echo download path'
+      - name: 'download path'
         run: | 
-          echo ${{steps.download.outputs.download-path}}
-          echo ${{github.run_id}} ${{github.repository}}
+          echo "download path: ${{steps.download.outputs.download-path}}"
+          echo "run_id: ${{github.run_id}} ${{github.repository}}"
           
 
   goodbye:
