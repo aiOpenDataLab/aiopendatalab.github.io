@@ -27,7 +27,7 @@ jobs:
       - shell: bash
         run: |
           value=`cat math-homework.txt`
-          expr $value and denny > math-homework.txt
+          expr $value + 2 > math-homework.txt
       - name: Upload math result for job 2
         uses: actions/upload-artifact@v3
         with:
