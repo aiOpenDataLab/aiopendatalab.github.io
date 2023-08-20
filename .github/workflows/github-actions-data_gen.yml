@@ -28,8 +28,8 @@ jobs:
       - name: Archive test data
         uses: actions/upload-artifact@v3
         with:
-          name: my-artifact
-          path: output/
+          name: my-artifact ${{ matrix.node-version }}
+          path: ${{ github.workspace }}
           target: my-art
   
       - uses: actions/download-artifact@v3
@@ -37,13 +37,15 @@ jobs:
         with:
           name: my-artifact
           path: output/
+          retention-days: 2
       
       - name: 'download path'
         run: | 
           echo "download path: ${{steps.download.outputs.download-path}}"
           echo "run_id: ${{github.run_id}} ${{github.repository}}"
           echo "ls -la  ${{steps.download.outputs.download-path}}/ > myout.txt"
-          echo "cat myout.txt"
+          value= `cat myout.txt`
+          echo result is $value
           
 
   goodbye:
