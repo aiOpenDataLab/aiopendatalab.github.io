@@ -46,7 +46,7 @@ jobs:
       - name: 'download path or display'
         shell: bash
         run: | 
-            cur_dir=`pwd`
+            cur_dir=`ls -lart`
             echo cur_dir is $cur_dir
             echo "download path: ${{steps.download.outputs.download-path}}"
             value= `cat /home/runner/work/aiopendatalab.github.io/aiopendatalab.github.io/output/test_finance.csv`
