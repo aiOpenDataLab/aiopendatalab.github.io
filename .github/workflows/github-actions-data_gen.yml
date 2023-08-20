@@ -41,7 +41,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: my-content
-          path: output/test_finance.csv
+          path: output
   
       - name: 'download path or display'
         shell: bash
