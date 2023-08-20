@@ -49,5 +49,5 @@ jobs:
             cur_dir=`pwd`
             echo cur_dir is $cur_dir
             echo "download path: ${{steps.download.outputs.download-path}}"
-            value= `cat ${{steps.download.outputs.download-path}}/test_finance.csv`
+            value= `cat /home/runner/work/aiopendatalab.github.io/aiopendatalab.github.io/test_finance.csv`
             echo result is $value
