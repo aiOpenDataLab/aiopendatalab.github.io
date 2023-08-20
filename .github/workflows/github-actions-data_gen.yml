@@ -49,5 +49,5 @@ jobs:
             cur_dir=`ls`
             echo cur_dir is $cur_dir/output/
             #echo "download path: ${{steps.download.outputs.download-path}}"
-            value= `cat ${{steps.download.outputs.download-path}}/test_finance.csv`
+            value= `cat output/test_finance.csv`
             echo result is $value
