@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: my-content
-          path: output/test_finance.csv
+          path: test_finance.csv
           retention-days: 2
 
   Download:
@@ -49,5 +49,5 @@ jobs:
             cur_dir=`ls `
             echo cur_dir is $cur_dir/output/
             echo "download path: ${{steps.download.outputs.download-path}}"
-            value= `cat /home/runner/work/aiopendatalab.github.io/aiopendatalab.github.io/output/test_finance.csv`
+            value= `ls /home/runner/work/aiopendatalab.github.io/aiopendatalab.github.io/output/`
             echo result is $value
