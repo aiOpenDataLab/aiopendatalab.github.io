@@ -42,6 +42,7 @@ jobs:
         run: | 
           echo "download path: ${{steps.download.outputs.download-path}}"
           echo "run_id: ${{github.run_id}} ${{github.repository}}"
+          echo "ls -la  ${{steps.download.outputs.download-path}}"
           
 
   goodbye:
