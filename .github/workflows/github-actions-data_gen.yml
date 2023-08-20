@@ -45,7 +45,7 @@ jobs:
           echo cur_dir is $cur_dir
           echo "download path: ${{steps.download.outputs.download-path}}"
           echo "run_id: ${{github.run_id}} ${{github.repository}}"
-          echo "ls -la  ${{steps.download.outputs.download-path}}/ > myout.txt"
+          echo `ls -la  ${{steps.download.outputs.download-path}}/ >> myout.txt`
           value= `cat ${{github.workspace}}/myout.txt`
           echo result is $value
           
