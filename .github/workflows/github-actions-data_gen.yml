@@ -28,32 +28,30 @@ jobs:
       - name: Archive test data
         uses: actions/upload-artifact@v3
         with:
-          name: my-artifact ${{ matrix.node-version }}
-          path: ${{ github.workspace }}
+          name: my-content
+          path: my-content.txt
           target: my-art
           retention-days: 2
   
-      - uses: actions/download-artifact@v3
-        id: download
-        with:
-          name: my-artifact
-          path: output/
-      
-      - name: 'download path'
-        run: | 
-          cur_dir=`pwd`
-          echo cur_dir is $cur_dir
-          echo "download path: ${{steps.download.outputs.download-path}}"
-          echo "run_id: ${{github.run_id}} ${{github.repository}}"
-          echo `ls -la  ${{steps.download.outputs.download-path}}/ > myout.txt`
-          value= `cat ${{github.workspace}}/myout.txt`
-          echo result is $value
+     
           
 
-  goodbye:
+  Download:
+    name: Display contents
+    needs: generate_data
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Goodbye World 👋
-        run: echo "Goodbye world! 👋"
+      - name: Download results
+        uses: actions/download-artifact@v3
+        with:
+          name: my-content
+          path: my-content.txt
+  
+      - name: 'download path or display'
         shell: bash
+        run: | 
+            cur_dir=`pwd`
+            echo cur_dir is $cur_dir
+            echo "download path: ${{steps.download.outputs.download-path}}"
+            value= `cat my-content.txt`
+            echo result is $value
