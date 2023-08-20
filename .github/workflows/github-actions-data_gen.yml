@@ -8,7 +8,7 @@ jobs:
     steps:
       - shell: bash
         run: |
-          expr 3 + 7 > math
+          expr 3 + 7 > math2
       - name: Upload math result for job 1
         uses: actions/upload-artifact@v3
         with:
@@ -26,8 +26,8 @@ jobs:
           name: homework
       - shell: bash
         run: |
-          value=`cat math`
-          expr $value + 2 > math
+          value=`cat math2`
+          expr $value + 2 > math2
       - name: Upload math result for job 2
         uses: actions/upload-artifact@v3
         with:
@@ -46,5 +46,5 @@ jobs:
       - name: Print the final result
         shell: bash
         run: |
-          value=`cat math`
+          value=`cat math2`
           echo The result is $value
