@@ -2,52 +2,49 @@ name: GitHub Actions Data Generator
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
-  generate_data:
+  job_1:
+    name: Add 3 and 7
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        continue-on-error: false
-        uses: actions/checkout@v3 # checkout the repository content
-        
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        continue-on-error: false
-        with:
-          python-version: '3.11.4'  # install the python version needed
-
-      - name: Install Python Packages
-        continue-on-error: false
+      - shell: bash
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          
-      - name: Generate Data
-        continue-on-error: false
-        run: python data_gen.py -c stock -o json
-
-      - name: Archive test data
+          expr 3 + 7 > math-homework.txt
+      - name: Upload math result for job 1
         uses: actions/upload-artifact@v3
         with:
-          name: my-content
-          path: output/test_finance.csv
-          retention-days: 2
+          name: homework
+          path: math-homework.txt
 
-  Download:
-    name: Display contents
-    needs: generate_data
+  job_2:
+    name: Multiply by 9
+    needs: job_1
     runs-on: ubuntu-latest
     steps:
-      - name: Download results
+      - name: Download math result for job 1
         uses: actions/download-artifact@v3
         with:
-          name: my-content
-          path: output
-  
-      - name: 'download path or display'
+          name: homework
+      - shell: bash
+        run: |
+          value=`cat math-homework.txt`
+          expr $value \* 9 > math-homework.txt
+      - name: Upload math result for job 2
+        uses: actions/upload-artifact@v3
+        with:
+          name: homework
+          path: math-homework.txt
+
+  job_3:
+    name: Display results
+    needs: job_2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download math result for job 2
+        uses: actions/download-artifact@v3
+        with:
+          name: homework
+      - name: Print the final result
         shell: bash
-        run: | 
-            cur_dir=`ls`
-            echo cur_dir is $cur_dir/output/
-            #echo "download path: ${{steps.download.outputs.download-path}}"
-            value= `cat output/test_finance.csv`
-            echo result is $value
+        run: |
+          value=`cat math-homework.txt`
+          echo The result is $value
