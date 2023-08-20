@@ -48,6 +48,6 @@ jobs:
         run: | 
             cur_dir=`ls`
             echo cur_dir is $cur_dir/output/
-            echo "download path: ${{steps.download.outputs.download-path}}"
-            value= `cat /home/runner/work/aiopendatalab.github.io/aiopendatalab.github.io/output/test_finance.csv`
+            #echo "download path: ${{steps.download.outputs.download-path}}"
+            value= `cat test_finance.csv`
             echo result is $value
