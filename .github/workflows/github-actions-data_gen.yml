@@ -29,12 +29,8 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: my-content
-          path: my-content.txt
-          target: my-art
+          path: output/test_finance.csv
           retention-days: 2
-  
-     
-          
 
   Download:
     name: Display contents
@@ -45,7 +41,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: my-content
-          path: my-content.txt
+          path: output/test_finance.csv
   
       - name: 'download path or display'
         shell: bash
@@ -53,5 +49,5 @@ jobs:
             cur_dir=`pwd`
             echo cur_dir is $cur_dir
             echo "download path: ${{steps.download.outputs.download-path}}"
-            value= `cat my-content.txt`
+            value= `cat output/test_finance.csv`
             echo result is $value
