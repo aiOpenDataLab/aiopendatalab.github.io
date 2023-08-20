@@ -46,8 +46,8 @@ jobs:
       - name: 'download path or display'
         shell: bash
         run: | 
-            cur_dir=`ls `
+            cur_dir=`ls ./output/`
             echo cur_dir is $cur_dir/output/
             echo "download path: ${{steps.download.outputs.download-path}}"
-            value= `ls /home/runner/work/aiopendatalab.github.io/aiopendatalab.github.io/output/`
+            value= `cd /home/runner/work/aiopendatalab.github.io/aiopendatalab.github.io/output/`
             echo result is $value
