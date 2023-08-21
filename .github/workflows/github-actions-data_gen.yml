@@ -1,6 +1,17 @@
 name: GitHub Actions Data Generator
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on: 
+  workflow_dispatch:
+    inputs:
+      name:
+        type: choice
+        description: 'Select category:'
+        required: true
+        default: Stock
+        options: 
+        - Stock
+        - Weather
+
 jobs:
   generate_data:
     runs-on: ubuntu-latest
