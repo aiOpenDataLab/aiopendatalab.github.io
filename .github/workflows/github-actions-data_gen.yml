@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: output/test_finance.csv
+          path: output
           retention-days: 1
 
   Download:
@@ -41,7 +41,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: my-artifact
-          path: output/test_finance.csv
+          path: output
       - name: Display structure of download files
         run: ls -R
         working-directory: "${{steps.download.outputs.download-path}}"
@@ -49,5 +49,5 @@ jobs:
       - name: 'download path or display'
         shell: bash
         run: | 
-            value=`cat output/test_finance.csv/test_finance.csv`
+            value=`cat test_finance.csv`
             echo result is $value
