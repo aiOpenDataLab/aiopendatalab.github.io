@@ -49,5 +49,5 @@ jobs:
       - name: 'download path or display'
         shell: bash
         run: | 
-            value=`cat test_finance.csv`
+            value=`cat output/test_finance.csv`
             echo result is $value
