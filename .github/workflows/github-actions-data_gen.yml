@@ -2,49 +2,49 @@ name: GitHub Actions Data Generator
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
-  job_1:
-    name: Add 3 and 7
+  generate_data:
     runs-on: ubuntu-latest
     steps:
-      - shell: bash
+      - name: Checkout Repository
+        continue-on-error: false
+        uses: actions/checkout@v3 # checkout the repository content
+     
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        continue-on-error: false
+        with:
+          python-version: '3.11.4'  # install the python version needed
+
+      - name: Install Python Packages
+        continue-on-error: false
         run: |
-          expr 3 + 7 > math2
-      - name: Upload math result for job 1
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Generate Data
+        continue-on-error: false
+        run: python data_gen.py -c stock -o json
+
+      - name: Archive test data
         uses: actions/upload-artifact@v3
         with:
-          name: homework
-          path: math2
+          name: my-content
+          path: output/test_finance.csv
+          retention-days: 2
 
-  job_2:
-    name: Multiply by 9
-    needs: job_1
+  Download:
+    name: Display contents
+    needs: generate_data
     runs-on: ubuntu-latest
     steps:
-      - name: Download math result for job 1
+      - name: Download results
         uses: actions/download-artifact@v3
         with:
-          name: homework
-      - shell: bash
-        run: |
-          value=`cat math2`
-          expr $value + 2 > math2
-      - name: Upload math result for job 2
-        uses: actions/upload-artifact@v3
-        with:
-          name: homework
-          path: math2
-
-  job_3:
-    name: Display results
-    needs: job_2
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download math result for job 2
-        uses: actions/download-artifact@v3
-        with:
-          name: homework
-      - name: Print the final result
+          name: my-content
+          path: output/test_finance.csv
+  
+      - name: 'download path or display'
         shell: bash
-        run: |
-          value=`cat math2`
-          echo The result is $value
+        run: | 
+            value=`cat output/test_finance.csv`
+            echo result is $value
