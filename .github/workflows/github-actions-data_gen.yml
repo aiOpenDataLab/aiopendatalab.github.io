@@ -62,3 +62,4 @@ jobs:
         run: | 
             value=`cat output/test_finance.csv`
             echo result is $value
+            echo run_id is ${{github.run_id}}
