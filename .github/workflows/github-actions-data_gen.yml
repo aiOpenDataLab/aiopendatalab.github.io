@@ -28,9 +28,9 @@ jobs:
       - name: Archive test data
         uses: actions/upload-artifact@v3
         with:
-          name: my-content
-          path: test_finance.csv
-          retention-days: 2
+          name: my-artifact
+          path: output/test_finance.csv
+          retention-days: 1
 
   Download:
     name: Display contents
@@ -40,8 +40,11 @@ jobs:
       - name: Download results
         uses: actions/download-artifact@v3
         with:
-          name: my-content
+          name: my-artifact
           path: test_finance.csv
+      - name: Display structure of download files
+        run: ls -R
+        working-directory: "${{steps.download.outputs.download-path}}"
   
       - name: 'download path or display'
         shell: bash
